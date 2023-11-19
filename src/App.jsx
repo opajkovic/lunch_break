@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Home, Error, Login, Register, ErrorItem,Meals } from "./pages";
 
-// import {loader as mealsLoader} from "./pages/Meals";
+import {loader as mealsLoader} from "./pages/Meals";
 // import {loader as categoryLoader} from "./pages/Category";
 // import {loader as homeLoader} from "./pages/home/Home";
 // import {loader as historyLoader} from "./pages/history/History"
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         index: true,
         element:<Meals />,
         errorElement: <ErrorItem />,
-        // loader: mealsLoader,
+        loader: mealsLoader,
       },
       {
         path: "/categories/:id",

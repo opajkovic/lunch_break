@@ -6,6 +6,6 @@ export const apiCall = axios.create({
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      "Authorization": "Bearer 81|pgWgnHs6oKKhF2872qxky9nhuUGxz0sl6Y9P8jW305a64e01"
+      "Authorization": "Bearer 19|lIGJSzoAoeeeNj27hxMUmeQoZprxPylm7ZrH3xjm803f824d"
     },
   }) 

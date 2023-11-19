@@ -1,7 +1,29 @@
+import { useLoaderData } from "react-router-dom";
+import { apiCall } from "../utils";
+import { CardItem } from "../components";
+
+const url = '/api/meals';
+
+export const loader = async () => {
+  const response = await apiCall.post(url);
+  console.log(response.data.data)
+  return response.data.data
+}
 
 const Meals = () => {
+  const meals = useLoaderData();
+  console.log(meals)
+
   return (
-    <div className="md:w-2/3 w-full bg-blue-500 p-1 md:p-8">Meals</div>
+    <div className="flex justify-around items-center flex-wrap">
+    {/* <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"> */}
+    {meals?.map((meal) => {
+      return (
+        <CardItem key={meal.id}  meal={meal}/>
+      )
+    })}
+    </div>
+    // </div>
   )
 }
 
