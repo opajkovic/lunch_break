@@ -1,7 +1,15 @@
+import { Header } from "../components";
+import {Cart, Meals} from "./";
 
 const Home = () => {
   return (
-    <div className="capitalize">Home</div>
+    <section className="container mx-auto">
+      <Header />
+      <div className="container mx-auto flex flex-wrap">
+          <Meals />
+          <Cart />
+      </div>
+    </section>
   )
 }
 
