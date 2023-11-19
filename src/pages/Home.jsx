@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Header, Menu } from "../components";
-import { Cart, Meals } from "./";
+import { Cart } from "./";
 
 const Home = () => {
   return (
