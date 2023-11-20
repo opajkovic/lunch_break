@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Home, Error, Login, Register, ErrorItem,Meals } from "./pages";
+import {Categories, Types} from "./components";
 
 import {loader as mealsLoader} from "./pages/Meals";
 // import {loader as categoryLoader} from "./pages/Category";
@@ -24,10 +25,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/categories/:id",
-        // element: <Category />,
+        element: <Categories />,
         errorElement: <ErrorItem />, 
-        // loader: categoryLoader,
-      }
+        // loader: categoriesLoader,
+     },
+     {
+     path:"/types/:id",
+     element:<Types />,
+     errorElement:<ErrorItem />,
+     
+     }
     ]
   }, 
   {
