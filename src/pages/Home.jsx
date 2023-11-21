@@ -1,6 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { Header, Menu } from "../components";
 import { Cart } from "./";
+import { apiCall } from "../utils";
+
+export const loader = async() => {
+  const response = await apiCall('/api/categories');
+  const res = await apiCall('/api/types');
+  const categories = response.data.data;
+  const types = res.data.data;
+  return {categories,types}
+}
 
 const Home = () => {
   return (

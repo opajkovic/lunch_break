@@ -3,9 +3,9 @@ import { Home, Error, Login, Register, ErrorItem,Meals } from "./pages";
 import {Categories, Types} from "./components";
 
 import {loader as mealsLoader} from "./pages/Meals";
-// import {loader as categoryLoader} from "./pages/Category";
-// import {loader as homeLoader} from "./pages/home/Home";
-// import {loader as historyLoader} from "./pages/history/History"
+import {loader as categoryLoader} from "./components/Categories";
+import {loader as menuLoader} from "./pages/Home";
+import {loader as typesLoader} from "./components/Types"
 
 import {action as registerAction} from "./pages/Register";
  import {action as loginAction} from "./pages/Login"
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     path:"/",
     element:<Home />,
     errorElement:<Error />,
-    // loader: homeLoader,
+    loader: menuLoader,
     children: [
       {
         index: true,
@@ -27,13 +27,13 @@ const router = createBrowserRouter([
         path: "/categories/:id",
         element: <Categories />,
         errorElement: <ErrorItem />, 
-        // loader: categoriesLoader,
+        loader: categoryLoader,
      },
      {
      path:"/types/:id",
      element:<Types />,
      errorElement:<ErrorItem />,
-     
+     loader:typesLoader,
      }
     ]
   }, 
