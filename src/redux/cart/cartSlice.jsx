@@ -2,28 +2,58 @@ import { createSlice} from "@reduxjs/toolkit";
 import {toast} from "react-toastify";
 
 const defaultState = {
-    "meals": [],
-    "quantities": [],
+    meals: [],
+    description:"",
+    inAdvance:""
 }
 
-// const getCartFromLocalStorage = () => {
-//     return JSON.parse(localStorage.getItem('cart')) || defaultState;
-// }
+const getCartFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('cart')) || defaultState;
+}
 
 const cartSlice = createSlice({
     name:"cart",
-    initialState: defaultState,
+    initialState: getCartFromLocalStorage(),
     reducers: {
         addMeal: (state,action) =>{
-            // const {mealId,quantity} = action.payload
-            // state.meals.push(mealId);
-            // state.quantities.push(quantity);
-            // localStorage.setItem('cart',JSON.stringify(state))
-            // toast.success("Meal added to cart");
+            let i = 0
+            if(state.meals.length === 0) {
+                state.meals.push(action.payload)
+            } else {
+            for (let item of state.meals){
+            if (item[0] === action.payload[0]) {
+                item[1] += action.payload[1]
+                i=1;
+            }  }
+            }
+            if(i===0) {
+                state.meals.push(action.payload);
+            }            
+            localStorage.setItem('cart',JSON.stringify(state));
+            toast.success("Meal added to cart");
         },
-        clearMeal: (state) => {},
-        removeMeal: (state) => {},
-        editmeal: (state, action) => {}
+        clearCart: (state) => {
+            localStorage.setItem('cart',JSON.stringify(defaultState));
+            return defaultState;
+        },
+        removeMeal: (state,action) => {
+            for ( let item of state.meals) {
+                if(item[0] === action.payload) {
+                    let index =  action.payload;
+                    state.meals.splice(index,1)
+                }
+            }
+            localStorage.setItem('cart',JSON.stringify(state));
+            toast.success('Item removed from cart')
+        },
+        editmeal: (state, action) => {
+            for (let item of state.meals) {
+                if(item[0] === action.payload[0]){
+                    item[1] += action.payload[1]
+                }
+            }
+            localStorage.setItem('cart',JSON.stringify(state))
+        }
     },
 });
 export const {addMeal, clearMeal, removeMeal, editMeal} = cartSlice.actions;
