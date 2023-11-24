@@ -17,8 +17,9 @@ const cartSlice = createSlice({
     reducers: {
         addMeal: (state,action) =>{
             let i = 0
-            if(state.meals.length === 0) {
+            if(state.meals.length == 0) {
                 state.meals.push(action.payload)
+                i=1;
             } else {
             for (let item of state.meals){
             if (item[0] === action.payload[0]) {
@@ -26,7 +27,7 @@ const cartSlice = createSlice({
                 i=1;
             }  }
             }
-            if(i===0) {
+            if(i==0) {
                 state.meals.push(action.payload);
             }            
             localStorage.setItem('cart',JSON.stringify(state));

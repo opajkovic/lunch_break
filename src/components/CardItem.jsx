@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Modal from '../layout/Modal';
+import { useSelector } from 'react-redux';
 
 const CardItem = ({meal}) => {
+    const numItemsInCart = useSelector((state) => state.cart.meals.length)
     const {name,price} = meal;
     const [isOpen, setIsOpen] = useState(false);
     const [item,setItem] = useState(null);
@@ -13,8 +15,8 @@ const CardItem = ({meal}) => {
     }
 
    return (
-    <div className="w-full pl-2 pr-2 cclg:w-1/3 lg:p-0">  
-    <div className='card bg-base-100 m-1 shadow-xl'>
+    <div className={numItemsInCart==0 ? "w-full pl-2 pr-2 md:w-1/5 md:p-0" : "w-full pl-2 pr-2 md:w-1/3 md:p-0"}>
+    <div className="card bg-base-100 m-1 shadow-xl">
     <figure><img src={photo} alt="meal" className='w-full h-1/4' /></figure>
   <div className="card-body">
     <h2 className="card-title">{name}!</h2>
