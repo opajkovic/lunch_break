@@ -16,6 +16,7 @@ const cartSlice = createSlice({
     initialState: getCartFromLocalStorage(),
     reducers: {
         addMeal: (state,action) =>{
+            console.log(action.payload)
             let i = 0
             if(state.meals.length == 0) {
                 state.meals.push(action.payload)
@@ -47,10 +48,16 @@ const cartSlice = createSlice({
             localStorage.setItem('cart',JSON.stringify(state));
             toast.success('Item removed from cart')
         },
-        editmeal: (state, action) => {
+        editMeal: (state, action) => {
+            console.log(action.payload)
             for (let item of state.meals) {
-                if(item[0] === action.payload[0]){
-                    item[1] += action.payload[1]
+                if(item[0].id === action.payload.id){
+                    if(action.payload.sign === 'decrease' && item[1] > 0) {
+                    item[1] -= 1
+                    }
+                    if(action.payload.sign === 'increase') {
+                    item[1] +=1
+                    }
                 }
             }
             localStorage.setItem('cart',JSON.stringify(state))
