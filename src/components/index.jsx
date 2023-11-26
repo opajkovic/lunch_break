@@ -4,3 +4,4 @@ export {default as Menu} from './Menu';
 export {default as CardItem} from './CardItem';
 export {default as Categories} from './Categories';
 export {default as Types} from './Types';
+export {default as Title} from './Title';

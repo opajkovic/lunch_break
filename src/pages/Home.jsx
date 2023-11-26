@@ -23,7 +23,7 @@ const Home = () => {
       {loading ? <Loading /> :
       <div className="container mx-auto flex flex-wrap">
         <Menu />
-        <div className={numItemsInCart>0 ? "md:w-3/6 w-full md:p-8 flex " : "md:w-5/6 md:p-8 flex"}>
+        <div className={numItemsInCart>0 ? "md:w-3/6 w-full md:p-8 flex  " : "md:w-5/6 md:p-8 flex"}>
           <Outlet />
         </div>
         {numItemsInCart>0 && <Cart />}

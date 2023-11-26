@@ -16,9 +16,9 @@ const increaseCount = () => {
    setCount(count => count + 1)
 }
 
-const handleClick = () => {
+const handleClick = (item) => {
   closeModal(false);
-  dispatch(addMeal([item.id, count]))
+  dispatch(addMeal([item, count,photo]))
 }
 false
   return (
@@ -35,7 +35,7 @@ false
         <span className='p-2' onClick={increaseCount}>+</span>
         </div>
     <p className='w-full mt-2 p-4'>Lamb chops are usually marinated in various combinations of olive oil, and a variety of fresh herbs before </p>
-        <button onClick={()=> handleClick()} className="bg-blue-500 text-white px-4 py-2 rounded">Add to cart</button>
+        <button onClick={()=> handleClick(item)} className="bg-blue-500 text-white px-4 py-2 rounded">Add to cart</button>
       </div>
        </div>
     </>

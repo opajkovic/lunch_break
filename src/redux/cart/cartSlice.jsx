@@ -22,7 +22,7 @@ const cartSlice = createSlice({
                 i=1;
             } else {
             for (let item of state.meals){
-            if (item[0] === action.payload[0]) {
+            if (item[0].id === action.payload[0].id) {
                 item[1] += action.payload[1]
                 i=1;
             }  }
