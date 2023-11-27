@@ -15,12 +15,10 @@ const Meals = () => {
   
   return (
     <div className="flex items-center mx-auto flex-wrap">
-      {/* <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"> */}
-      {meals?.map((meal) => {
+        {meals?.map((meal) => {
         return <CardItem key={meal.id} meal={meal} />;
       })}
     </div>
-    // </div>
   );
 };
 
