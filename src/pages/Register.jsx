@@ -15,7 +15,8 @@ export const action = async ({ request }) => {
     console.log(response.data);
     return redirect("/login");
   } catch (error) {
-    toast.error(error?.response?.data?.message);
+    console.log(error)
+        toast.error(error?.response?.data?.message);
     return null;
   }
 };
@@ -29,9 +30,9 @@ const Register = () => {
           name: "",
           surname: "",
           email: "",
-          username: "",
           password: "",
           password_confirmation: "",
+          device:'device',
         }}
         onSubmit={async (values) => {
           submit(values, { method: "post" });
@@ -117,7 +118,7 @@ const Register = () => {
                 touched={touched.email}
                 error={errors.email}
               />
-              <FormInput
+              {/* <FormInput
                 value={values.username}
                 type="text"
                 label="username"
@@ -126,7 +127,7 @@ const Register = () => {
                 onBlur={handleBlur}
                 touched={touched.username}
                 error={errors.username}
-              />
+              /> */}
               <FormInput
                 value={values.password}
                 type="password"

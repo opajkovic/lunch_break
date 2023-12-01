@@ -5,6 +5,7 @@ const defaultState = {
   meals: [],
   description: "",
   inAdvance: "",
+  total:0
 };
 
 const getCartFromLocalStorage = () => {
@@ -32,6 +33,7 @@ const cartSlice = createSlice({
         state.meals.push(action.payload);
       }
       localStorage.setItem("cart", JSON.stringify(state));
+      cartSlice.caseReducers.calculateTotal(state);
       toast.success("Meal added to cart");
     },
     clearCart: (state) => {
@@ -39,13 +41,9 @@ const cartSlice = createSlice({
       return defaultState;
     },
     removeMeal: (state, action) => {
-      for (let item of state.meals) {
-        if (item[0].id == action.payload) {
-          let index = action.payload.id;
-          state.meals.splice(index, 1);
-        }
-      }
+      state.meals = state.meals.filter((meal) =>meal[0].id !== action.payload)
       localStorage.setItem("cart", JSON.stringify(state));
+      cartSlice.caseReducers.calculateTotal(state);
       toast.success("Item removed from cart");
     },
     editMeal: (state, action) => {
@@ -59,8 +57,16 @@ const cartSlice = createSlice({
           }
         }
       }
+      cartSlice.caseReducers.calculateTotal(state);
       localStorage.setItem("cart", JSON.stringify(state));
     },
+    calculateTotal:(state) => {
+      let total = 0;
+      for(let item of state.meals) {
+        total += parseFloat(item[0].price )* parseFloat(item[1])
+      }
+      state.total = total.toFixed(2)
+    }
     },
 });
 export const { addMeal, clearMeal, removeMeal, editMeal} = cartSlice.actions;

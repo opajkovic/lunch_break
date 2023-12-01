@@ -6,8 +6,9 @@ import { editMeal, removeMeal } from "../redux/cart/cartSlice";
 const Cart = () => {
   const dispatch = useDispatch();
   const itemsInCart = useSelector((state) => state.cart.meals);
+  const total = useSelector((state) => state.cart.total);
   const numItemsInCart = itemsInCart.length;
-
+  
   return (
     <div
       className={
@@ -67,6 +68,7 @@ const Cart = () => {
           );
         })}
       </div> 
+      <p className="p-2 font-medium text-xl flex justify-around">Total:<span className="">{total}€</span></p>
       <button    
             className="bg-blue-500 text-white px-8 py-4 rounded"
           >

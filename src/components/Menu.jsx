@@ -4,14 +4,14 @@ import { Link, useLoaderData } from "react-router-dom"
 const Menu = () => {
   const {categories,types} = useLoaderData();
   const [isChecked, setIsChecked] = useState(false);
-  const [isOpen,setIsOpen] = useState(0)
+  const [isOpen,setIsOpen] = useState(false)
   
 const handleChange = () => {
   setIsChecked(!isChecked)
 }
 
 const toggleOpen = () => {
-  setIsOpen(1)
+  setIsOpen(!isOpen)
 }
 
 

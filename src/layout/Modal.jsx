@@ -3,22 +3,22 @@ import { useDispatch } from "react-redux";
 import { addMeal } from "../redux/cart/cartSlice";
 
 const Modal = ({ closeModal, item, photo }) => {
-  const [count, setCount] = useState(1);
+  const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
 
   const decreaseCount = () => {
-    if (count != 1 || count > 1) {
-      setCount((count) => count - 1);
+    if (amount != 1 || amount > 1) {
+      setAmount((amount) => amount - 1);
     }
   };
 
   const increaseCount = () => {
-    setCount((count) => count + 1);
+    setAmount((amount) => amount + 1);
   };
 
   const handleClick = (item) => {
     closeModal(false);
-    dispatch(addMeal([item, count, photo]));
+    dispatch(addMeal([item, amount, photo]));
   };
   false;
   return (
@@ -37,7 +37,7 @@ const Modal = ({ closeModal, item, photo }) => {
             <span className="p-2 hover:cursor-pointer" onClick={decreaseCount}>
               -
             </span>
-            <span className="p-2">{count}</span>
+            <span className="p-2">{amount}</span>
             <span className="p-2 hover:cursor-pointer" onClick={increaseCount}>
               +
             </span>
@@ -54,7 +54,7 @@ const Modal = ({ closeModal, item, photo }) => {
           </button>
         </div>
       </div>
-    </>
+         </>
   );
 };
 

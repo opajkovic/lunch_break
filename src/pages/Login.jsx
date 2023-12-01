@@ -15,6 +15,7 @@ export const action = async({request}) => {
     console.log(response.data)
     return redirect('/')
   } catch (error){
+    console.log(error)
     toast.error(error?.response?.data?.message)
     return null;
   }
@@ -26,7 +27,8 @@ const Login = () => {
     <div className="bg-gray-100">
     <Formik initialValues={{
       email:"",
-      password:""
+      password:"",
+      device:"device"
     }}
     onSubmit={async (values) =>{
       submit(values,{method:'post'})
@@ -80,7 +82,7 @@ const Login = () => {
                 className="btn btn-error mt-2"
                 disabled={!(isValid && dirty) || isSubmitting}
               >
-                Register
+                Login
               </button>
             <section>
               <p>
